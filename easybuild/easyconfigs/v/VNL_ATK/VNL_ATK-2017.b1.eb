@@ -1,0 +1,33 @@
+easyblock = 'Binary'
+
+name = "VNL_ATK"
+version = "2017.b1"
+variant = "Linux64"
+
+homepage = 'http://quantumwise.com/'
+description = """ATK is a comprehensive platform for studies  in nanoelectronics, using both
+ accurate first-principles (DFT) and fast semi-empirical methods and classical potentials."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+# http://quantumwise.com/products/download
+sources = ['VNL-ATK-%s-%s.bin' % (version, variant)]
+
+checksums = [
+    '05efede83c4adff7a5ff77c57322de66',  # VNL-ATK-2017.b1-Linux64.bin
+]
+
+license_path = "/path/to/license.file"  # or "port@host"
+
+install_cmd = "./" + sources[0] + " --mode unattended --prefix %(installdir)s"
+
+sanity_check_paths = {
+    'files': ['bin/vnl', 'bin/atkpython'],
+    'dirs': []
+}
+
+modextravars = {
+    'QUANTUM_LICENSE_PATH': license_path,
+}
+
+moduleclass = 'chem'
